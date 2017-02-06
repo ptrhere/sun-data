@@ -38,4 +38,9 @@ RST | Reset | RST
 
  - [ ] Start the project
  
+### Links \& References
+
+[NodeMCU WebServer with SD Card Support](https://www.hackster.io/draw2dtouch/nodemcu-webserver-with-sd-card-support-169adc) 
+
+[Tech Note 008 NTP controlled OLED CLOCK and demos the WIFI Manager](https://www.youtube.com/watch?v=RTKQMuWPL5A#t=416.58195)
 
