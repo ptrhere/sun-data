@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20001102//EN" 
+ "http://www.w3.org/TR/2000/CR-SVG-20001102/DTD/svg-20001102.dtd">
+
+<svg width="84cm" height="350cm">
+
+    <text x="0" y="0" fill="#808080" font-size="18pt" style="font-family:Arial">Sample Text</text>
+    <text x="0" y="2cm" fill="#808080" font-size="18pt" style="font-family:Arial">Sample Text</text>
+
+
+
+</svg>
