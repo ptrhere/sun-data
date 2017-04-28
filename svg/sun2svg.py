@@ -58,7 +58,7 @@ def createGroup(startRow,endRow,coordX,stepY,ff):
     rows.append(svgGroupEnd)
     return rows 
 
-def writeToFile(ff, data):
+def writeToFile(ff,data1,data2,data3,data4,data5,data6,data7,data8,data9,data10,data11,data12,data13,data14):
     # write to SVG file
     newFile = ff[1] + ".svg"
     ffw = open(newFile, 'w')
@@ -67,8 +67,47 @@ def writeToFile(ff, data):
     for i in range(0,len(head)):
         ffw.write(head[i] + "\n")
      
-    for i in range(0,len(data)):
-        ffw.write(data[i] + "\n")
+    for i in range(0,len(data1)):
+        ffw.write(data1[i] + "\n")
+
+    for i in range(0,len(data2)):
+        ffw.write(data2[i] + "\n")
+
+    for i in range(0,len(data3)):
+        ffw.write(data3[i] + "\n")
+
+    for i in range(0,len(data4)):
+        ffw.write(data4[i] + "\n")
+
+    for i in range(0,len(data5)):
+        ffw.write(data5[i] + "\n")
+
+    for i in range(0,len(data6)):
+        ffw.write(data6[i] + "\n")
+
+    for i in range(0,len(data7)):
+        ffw.write(data7[i] + "\n")
+
+    for i in range(0,len(data8)):
+        ffw.write(data8[i] + "\n")
+
+    for i in range(0,len(data9)):
+        ffw.write(data9[i] + "\n")
+
+    for i in range(0,len(data10)):
+        ffw.write(data10[i] + "\n")
+
+    for i in range(0,len(data11)):
+        ffw.write(data11[i] + "\n")
+
+    for i in range(0,len(data12)):
+        ffw.write(data12[i] + "\n")
+
+    for i in range(0,len(data13)):
+        ffw.write(data13[i] + "\n")
+
+    for i in range(0,len(data14)):
+        ffw.write(data14[i] + "\n")
 
     foot = footer()
     for i in range(0,len(foot)):
@@ -81,13 +120,26 @@ def main():
     ff = openFile()
 
     # createGroup(startRow,endRow,coordX,stepY,ff):  
-    rows = createGroup(0,363,1,0.5,ff[0])
+    rows1 = createGroup(0,551,1,0.5,ff[0])
+    rows2 = createGroup(552,1102,10,0.5,ff[0])
+    rows3 = createGroup(1103,1653,20,0.5,ff[0])
+    rows4 = createGroup(1653,2204,30,0.5,ff[0])
+    rows5 = createGroup(2204,2755,40,0.5,ff[0])
+    rows6 = createGroup(2755,3306,50,0.5,ff[0])
+    rows7 = createGroup(3306,3857,60,0.5,ff[0])
+    rows8 = createGroup(3857,4408,70,0.5,ff[0])
+    rows9 = createGroup(4408,4959,80,0.5,ff[0])
+    rows10 = createGroup(4959,5510,90,0.5,ff[0])
+    rows11 = createGroup(5510,6061,100,0.5,ff[0])
+    rows12 = createGroup(6061,6612,110,0.5,ff[0])
+    rows13 = createGroup(6612,7163,120,0.5,ff[0])
+    rows14 = createGroup(7163,7714,130,0.5,ff[0])    
 
     #for i in range(0,len(rows)):
     #    print(rows[i])
 
     print("Writing to file: " + ff[1] + ".svg")
-    writeToFile(ff,rows)
+    writeToFile(ff,rows1,rows2,rows3,rows4,rows5,rows6,rows7,rows8,rows9,rows10,rows11,rows12,rows13,rows14)
     print("Done")
 
         
