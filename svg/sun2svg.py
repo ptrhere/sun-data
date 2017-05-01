@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 
 import sys
 import decimal
@@ -45,8 +46,8 @@ def createGroup(subset,coordX,coordY,stepY,ff):
     prev = coordY
     rows = []
     
-    startRow = subset[0]
-    endRow = subset[1]
+    startRow = int(subset[0])
+    endRow = int(subset[1])
 
     svgGroupStart = "<g fill=\"#808080\" font-size=\"12pt\" style=\"font-family:Arial\">"
     svgGroupEnd = "</g>"
@@ -126,7 +127,7 @@ def startStopGenerator(noOfRows,noOfCols):
             ll[i] = (0,noOfRows)
         else:
             ll[i] = (((noOfRows*i)+1),((noOfRows*(i+1))+1))
-    #print(ll)
+    print(ll)
     return(ll)
 
 
@@ -139,7 +140,7 @@ def main():
     #print(ff[2])
     #print(ff[2]/14)
     #print(round(ff[2]/14))
-    noOfRows = round(ff[2]/14) 
+    noOfRows = round(ff[2]/setNumOfColumns) 
     subset = startStopGenerator(noOfRows,setNumOfColumns)
     #print(subset[0])
     #print(subset[0][1])
