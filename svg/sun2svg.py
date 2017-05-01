@@ -132,7 +132,8 @@ def startStopGenerator(noOfRows,noOfCols):
 
 def main():
     ff = openFile()
-    
+   
+    # @Pepa set desired number of columns here 
     setNumOfColumns = 14
 
     #print(ff[2])
@@ -143,7 +144,7 @@ def main():
     #print(subset[0])
     #print(subset[0][1])
 
-    # Pepa change here 'coordX' of the columns, initial Y coord - 'coordY' and the step between the rows 'stepY' below
+    # @Pepa change here 'coordX' of the columns, initial Y coord - 'coordY' and the step between the rows 'stepY' below
     # createGroup(subset,     coordX(cm),coordY(cm),stepY(cm),ff):  
     col1 = createGroup(subset[0],      1,   10.0,   0.5,   ff[0])
     col2 = createGroup(subset[1],      6,   10.0,   0.5,   ff[0])
