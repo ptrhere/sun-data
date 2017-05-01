@@ -1,4 +1,3 @@
-#! /usr/bin/python3
 
 import sys
 import decimal
@@ -27,7 +26,8 @@ def openFile():
     with open(sys.argv[1],"r") as f:
         contents = f.read()
         f.close()
-    return (contents.splitlines(),sys.argv[1])
+    lines = contents.splitlines()
+    return (lines,sys.argv[1],len(lines))
 
 def setXcoord(step,prev):
     # change x value with step when we store previous value in prev 
@@ -40,16 +40,19 @@ def setYcoord(step,prev):
     value = "y=\"" + str(decimal.Decimal(step) + decimal.Decimal(prev)) + "cm\"" 
     return value 
 
-def createGroup(startRow,endRow,coordX,stepY,ff):
+def createGroup(subset,coordX,coordY,stepY,ff):
     # create group start from startRow and ends at endRow with stepY and X coordinate at coordX
-    prev = 0
+    prev = coordY
     rows = []
+    
+    startRow = subset[0]
+    endRow = subset[1]
 
     svgGroupStart = "<g fill=\"#808080\" font-size=\"12pt\" style=\"font-family:Arial\">"
     svgGroupEnd = "</g>"
 
     rows.append(svgGroupStart)
-
+    
     for i in range(startRow,endRow):
        svgRow = "<text " + setXcoord(coordX,0) + " " + setYcoord(stepY,prev) + ">" + ff[i] + "</text>"
        prev = prev + stepY
@@ -115,31 +118,53 @@ def writeToFile(ff,data1,data2,data3,data4,data5,data6,data7,data8,data9,data10,
 
     ffw.close()
 
+def startStopGenerator(noOfRows,noOfCols):
+    # generate tuple((start1,stop1),(start2,stop2),(start3,stop3,...(startN,stopN))
+    ll = ['none'] * noOfCols 
+    for i in range(0,noOfCols):
+        if i == 0:
+            ll[i] = (0,noOfRows)
+        else:
+            ll[i] = (((noOfRows*i)+1),((noOfRows*(i+1))+1))
+    #print(ll)
+    return(ll)
+
 
 def main():
     ff = openFile()
+    
+    setNumOfColumns = 14
 
-    # createGroup(startRow,endRow,coordX,stepY,ff):  
-    rows1 = createGroup(0,551,1,0.5,ff[0])
-    rows2 = createGroup(552,1102,10,0.5,ff[0])
-    rows3 = createGroup(1103,1653,20,0.5,ff[0])
-    rows4 = createGroup(1653,2204,30,0.5,ff[0])
-    rows5 = createGroup(2204,2755,40,0.5,ff[0])
-    rows6 = createGroup(2755,3306,50,0.5,ff[0])
-    rows7 = createGroup(3306,3857,60,0.5,ff[0])
-    rows8 = createGroup(3857,4408,70,0.5,ff[0])
-    rows9 = createGroup(4408,4959,80,0.5,ff[0])
-    rows10 = createGroup(4959,5510,90,0.5,ff[0])
-    rows11 = createGroup(5510,6061,100,0.5,ff[0])
-    rows12 = createGroup(6061,6612,110,0.5,ff[0])
-    rows13 = createGroup(6612,7163,120,0.5,ff[0])
-    rows14 = createGroup(7163,7714,130,0.5,ff[0])    
+    #print(ff[2])
+    #print(ff[2]/14)
+    #print(round(ff[2]/14))
+    noOfRows = round(ff[2]/14) 
+    subset = startStopGenerator(noOfRows,setNumOfColumns)
+    #print(subset[0])
+    #print(subset[0][1])
+
+    # Pepa change here 'coordX' of the columns, initial Y coord - 'coordY' and the step between the rows 'stepY' below
+    # createGroup(subset,     coordX(cm),coordY(cm),stepY(cm),ff):  
+    col1 = createGroup(subset[0],      1,   10.0,   0.5,   ff[0])
+    col2 = createGroup(subset[1],      6,   10.0,   0.5,   ff[0])
+    col3 = createGroup(subset[2],     12,   10.0,   0.5,   ff[0])
+    col4 = createGroup(subset[3],     18,   10.0,   0.5,   ff[0])
+    col5 = createGroup(subset[4],     24,   10.0,   0.5,   ff[0])
+    col6 = createGroup(subset[5],     30,   10.0,   0.5,   ff[0])
+    col7 = createGroup(subset[6],     36,   10.0,   0.5,   ff[0])
+    col8 = createGroup(subset[7],     42,   10.0,   0.5,   ff[0])
+    col9 = createGroup(subset[8],     48,   10.0,   0.5,   ff[0])
+    col10 = createGroup(subset[9],    54,   10.0,   0.5,   ff[0])
+    col11 = createGroup(subset[10],   60,   10.0,   0.5,   ff[0])
+    col12 = createGroup(subset[11],   66,   10.0,   0.5,   ff[0])
+    col13 = createGroup(subset[12],   72,   10.0,   0.5,   ff[0])
+    col14 = createGroup(subset[13],   78,   10.0,   0.5,   ff[0])    
 
     #for i in range(0,len(rows)):
     #    print(rows[i])
 
     print("Writing to file: " + ff[1] + ".svg")
-    writeToFile(ff,rows1,rows2,rows3,rows4,rows5,rows6,rows7,rows8,rows9,rows10,rows11,rows12,rows13,rows14)
+    writeToFile(ff,col1,col2,col3,col4,col5,col6,col7,col8,col9,col10,col11,col12,col13,col14)
     print("Done")
 
         
