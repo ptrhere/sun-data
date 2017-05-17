@@ -65,8 +65,8 @@ def createGroup(subset,coordX,coordY,stepY,ff):
     rows.append(svgGroupStart)
 
     for i in range(startRow,endRow):
-        (time, r1, r2, r3, lux) = parseReadout(ff[i]);
-        print time, r1, r2, lux
+        (time, r1, lux, seemsZero, fullspectrum) = parseReadout(ff[i]);
+        print time, lux
         (r,g,b) = suncolormap.selectcolor(lux);
         svgRow = "<text " + setXcoord(coordX,0) + " " + setYcoord(stepY,prev) + " fill=\"rgb(" + str(r) + "," + str(g) + "," + str(b) + ")\"   stroke=\"rgb(" + str(r) + "," + str(g) + "," + str(b) + ")\" >" + ff[i] + "</text>"
         prev = prev + stepY
