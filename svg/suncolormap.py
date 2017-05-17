@@ -6,7 +6,8 @@ import webcolors
 # use web color names
 # eg.   https://www.w3schools.com/cssref/css_colors.asp
 
-map = [
+colorMap = [
+  (0.0, 'total darkness', 'black'),
   (0.0001, 'moonless overcast night sky', 'black'),
   (0.002, 'moonless clear night sky with airglow', 'darkblue'),
   (0.05, 'full moon clear night', 'violet'),
@@ -26,15 +27,21 @@ map = [
   (32000,  'direct sunlight', 'white')
 ]
 
+
+
+def lerp(a, b, t):
+     return map(lambda x,y: x*(1 - t) + y * t, a, b)
+
 def selectcolor(inputvalue):
+  if inputvalue < 0:
+    inputvalue = 0.0
   if inputvalue > 31000:
     inputvalue=31500
-  index = bisect.bisect(map, (inputvalue,None,None))
+  index = bisect.bisect(colorMap, (inputvalue,None,None))
   print index
-  #from = webcolors.name_to_rgb( map[index-1][2])
-  to = webcolors.name_to_rgb( map[index][2])
-  # should interpolate
-  return to
+  colorFrom = webcolors.name_to_rgb( colorMap[index-1][2] )
+  colorTo = webcolors.name_to_rgb( colorMap[index][2] )
+  ratio = (inputvalue - colorMap[index-1][0]) / (colorMap[index][0] - colorMap[index-1][0] )
+  return lerp(colorFrom,colorTo,ratio)
 
 
-selectcolor
